@@ -1,0 +1,7 @@
+.profile__container {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0 18px;
+  margin: 0 0 16px;
+  max-width: 336px;
+}
