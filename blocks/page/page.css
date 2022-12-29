@@ -4,8 +4,6 @@
   background-color: #000;
   font-family: 'Inter', Arial, sans-serif;
   color: #fff;
-  display: flex;
-  flex-direction: column;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
@@ -13,5 +11,4 @@
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
   margin: 0 auto;
-
 }
