@@ -8,7 +8,7 @@
 </head>
 <body class="page">
   <header class="header">
-    <img src="./images/header-logo.svg" alt="Логотип" class="header__logo">
+    <img src="./images/header-logo-dark.svg" alt="Логотип" class="header__logo">
   </header>
   <main class="content">
     <section class="profile" aria-label="profile">
@@ -16,11 +16,11 @@
       <div class="profile__info">
         <div class="profile__container">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <a href="#" class="profile__edit-button"></a>
+          <a href="#" class="profile__btn-edit"></a>
         </div>
         <p class="profile__about">Исследователь океана</p>
       </div>
-      <a href="#" class="profile__add-button"></a>
+      <a href="#" class="profile__btn-add"></a>
     </section>
     <section class="elements" aria-label="elements">
       <ul class="elements__list">
@@ -85,6 +85,22 @@
   <footer class="footer">
     <p class="footer__copyright">&copy;&nbsp;2020&nbsp;Mesto&nbsp;Russia</p>
   </footer>
+
+  <div class="popup popup_type_edit">
+    <div class="popup__container">
+      <button type="button" class="popup__btn-close"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form action="#" class="popup__form">
+        <div class="popup__input-wrapper">
+          <input class="popup__input popup__input_type_name" type="text" placeholder="Имя">
+          <input class="popup__input popup__input_type_about" type="text" placeholder="Род занятий">
+        </div>
+        <button class="popup__btn-save">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+
   <script src="./scripts/script.js"></script>
 </body>
 </html>

@@ -1,16 +1,16 @@
-.profile__add-button {
+.profile__btn-add {
   padding: 0;
   width: 150px;
   height: 50px;
   border: 2px solid #fff;
   border-radius: 2px;
-  background-image: url(../../../images/add-button.svg);
+  background-image: url(../../../images/btn-add.svg);
   background-position: center;
   background-repeat: no-repeat;
   transition: .2s;
   outline: none;
 }
 
-.profile__add-button:hover {
+.profile__btn-add:hover {
   opacity: .6;
 }
