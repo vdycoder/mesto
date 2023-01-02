@@ -7,3 +7,15 @@
   padding: 0;
   margin: 0;
 }
+
+@media screen and (max-width: 879px) {
+  .elements__list {
+    grid-template-columns: repeat(2, 282px);
+  }
+}
+
+@media screen and (max-width: 634px) {
+  .elements__list {
+    grid-template-columns: repeat(1, 282px);
+  }
+}
