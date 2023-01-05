@@ -1,6 +1,7 @@
 .profile__container {
   grid-area: name;
   display: inline-flex;
+  position: relative;
   align-items: end;
   align-self: end;
   gap: 0 18px;
@@ -15,6 +16,5 @@
 @media screen and (max-width: 634px) {
   .profile__container {
     max-width: 282px;
-    gap: 0 10px;
   }
 }

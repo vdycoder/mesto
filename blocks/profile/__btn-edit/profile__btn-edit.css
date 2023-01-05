@@ -17,10 +17,18 @@
   opacity: .6;
 }
 
+@media screen and (max-width: 776px) {
+  .profile__btn-edit {
+    position: absolute;
+    right: -42px;
+  }
+}
+
 @media screen and (max-width: 634px) {
   .profile__btn-edit {
     width: 18px;
     height: 18px;
     background-size: 7.5px 7.5px;
+    right: -28px;
   }
 }
