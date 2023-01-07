@@ -4,95 +4,92 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
-  <title>Проект: Место</title>
+  <title>Проект: Место Россия</title>
 </head>
 <body class="page">
   <header class="header">
     <img class="header__logo" src="./images/header-logo-dark.svg" alt="Логотип">
   </header>
   <main class="content">
-
     <section class="profile" aria-label="profile">
       <img class="profile__avatar" src="./images/Avatar.jpg" alt="Аватар пользователя">
       <div class="profile__container">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
-        <button type="button" href="#" class="profile__btn-edit"></button>
+        <button type="button" class="profile__btn-edit"></button>
       </div>
       <p class="profile__about">Исследователь океана</p>
-      <button type="button" href="#" class="profile__btn-add"></button>
+      <button type="button" class="profile__btn-add"></button>
     </section>
-
     <section class="elements" aria-label="elements">
       <ul class="elements__list">
         <li class="elements__item">
-          <figure class="elements__card">
+          <article class="elements__card">
             <img class="elements__image" src="./images/brandenburg-gates.jpg" alt="Бранденбургские ворота">
-            <figcaption class="elements__caption-wrapper">
-              <p class="elements__caption">Бранденбургские ворота</p>
-              <a href="#" class="elements__like-button"></a>
-            </figcaption>
-          </figure>
+            <div class="elements__caption-wrapper">
+              <h2 class="elements__caption">Бранденбургские ворота</h2>
+              <button type="button" class="elements__like-button"></button>
+            </div>
+          </article>
         </li>
         <li class="elements__item">
-          <figure class="elements__card">
+          <article class="elements__card">
             <img class="elements__image" src="./images/amsterdam.jpg" alt="Амстердам">
-            <figcaption class="elements__caption-wrapper">
-              <p class="elements__caption">Амстердам</p>
-              <a href="#" class="elements__like-button"></a>
-            </figcaption>
-          </figure>
+            <div class="elements__caption-wrapper">
+              <h2 class="elements__caption">Амстердам</h2>
+              <button type="button" class="elements__like-button"></button>
+            </div>
+          </article>
         </li>
         <li class="elements__item">
-          <figure class="elements__card">
+          <article class="elements__card">
             <img class="elements__image" src="./images/everest.jpg" alt="Эверест">
-            <figcaption class="elements__caption-wrapper">
-              <p class="elements__caption">Эверест</p>
-              <a href="#" class="elements__like-button"></a>
-            </figcaption>
-          </figure>
+            <div class="elements__caption-wrapper">
+              <h2 class="elements__caption">Эверест</h2>
+              <button type="button" class="elements__like-button"></button>
+            </div>
+          </article>
         </li>
         <li class="elements__item">
-          <figure class="elements__card">
+          <article class="elements__card">
             <img class="elements__image" src="./images/golden-bridge.jpg" alt="Золотые ворота">
-            <figcaption class="elements__caption-wrapper">
-              <p class="elements__caption">Золотые ворота</p>
-              <a href="#" class="elements__like-button"></a>
-            </figcaption>
-          </figure>
+            <div class="elements__caption-wrapper">
+              <h2 class="elements__caption">Золотые ворота</h2>
+              <button type="button" class="elements__like-button"></button>
+            </div>
+          </article>
         </li>
         <li class="elements__item">
-          <figure class="elements__card">
+          <article class="elements__card">
             <img class="elements__image" src="./images/creete.jpg" alt="о. Крит">
-            <figcaption class="elements__caption-wrapper">
-              <p class="elements__caption">о. Крит</p>
-              <a href="#" class="elements__like-button"></a>
-            </figcaption>
-          </figure>
+            <div class="elements__caption-wrapper">
+              <h2 class="elements__caption">о. Крит</h2>
+              <button type="button" class="elements__like-button"></button>
+            </div>
+          </article>
         </li>
         <li class="elements__item">
-          <figure class="elements__card">
+          <article class="elements__card">
             <img class="elements__image" src="./images/prague.jpg" alt="Прага">
-            <figcaption class="elements__caption-wrapper">
-              <p class="elements__caption">Прага</p>
-              <a href="#" class="elements__like-button elements__like-button_active"></a>
-            </figcaption>
-          </figure>
+            <div class="elements__caption-wrapper">
+              <h2 class="elements__caption">Прага</h2>
+              <button type="button" class="elements__like-button elements__like-button_active"></button>
+            </div>
+          </article>
         </li>
-
       </ul>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">&copy;&nbsp;2020&nbsp;Mesto&nbsp;Russia</p>
   </footer>
-  <div class="popup">
+  <div class="popup popup_type_edit-profile">
     <div class="popup__container">
       <button type="button" class="popup__btn-close"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form action="#" class="popup__form">
+      <form action="#" class="popup__form" name="profile_edit_form">
         <div class="popup__input-wrapper">
-          <input class="popup__input" id="input_type_name" type="text" placeholder="Имя">
-          <input class="popup__input" id="input_type_about" type="text" placeholder="Род занятий">
+          <input class="popup__input popup__input_el_name" type="text" placeholder="Имя">
+          <input class="popup__input popup__input_el_about" type="text" placeholder="Род занятий">
         </div>
         <button type="submit" class="popup__btn-save">Сохранить</button>
       </form>

@@ -26,6 +26,7 @@
 @media screen and (max-width: 634px) {
   .profile__name {
     font-size: 27px;
+    font-style: normal;
     line-height: calc(33 / 27);
     transform: translateY(6px);
     max-width: 230px;
