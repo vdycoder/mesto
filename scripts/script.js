@@ -24,3 +24,47 @@ function handleProfileEditFormSubmit (evt) {
 profileBtnEdit.addEventListener('click', togglePopupTypeEditProfile);
 popupBtnClose.addEventListener('click', togglePopupTypeEditProfile);
 profileEditForm.addEventListener('submit', handleProfileEditFormSubmit);
+
+/*sprint 5*/
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+const elementTemplate = document.querySelector('#element_template').content;
+const elementsList = document.querySelector('.elements__list');
+
+initialCards.forEach(((item) => {
+  // клонируем содержимое тега template
+  const singleElement = elementTemplate.querySelector('.elements__item').cloneNode(true);
+
+  // наполняем содержимым
+  singleElement.querySelector('.elements__image').src = item.link;
+  singleElement.querySelector('.elements__image').alt = item.name;
+  singleElement.querySelector('.elements__caption').textContent = item.name;
+
+  // отображаем на странице
+  elementsList.append(singleElement);
+}));

@@ -21,63 +21,7 @@
       <button type="button" class="profile__btn-add"></button>
     </section>
     <section class="elements" aria-label="elements">
-      <ul class="elements__list">
-        <li class="elements__item">
-          <article class="elements__card">
-            <button type="button" class="elements__trash-button"></button>
-            <img class="elements__image" src="./images/brandenburg-gates.jpg" alt="Бранденбургские ворота">
-            <div class="elements__caption-wrapper">
-              <h2 class="elements__caption">Бранденбургские ворота</h2>
-              <button type="button" class="elements__like-button"></button>
-            </div>
-          </article>
-        </li>
-        <li class="elements__item">
-          <article class="elements__card">
-            <img class="elements__image" src="./images/amsterdam.jpg" alt="Амстердам">
-            <div class="elements__caption-wrapper">
-              <h2 class="elements__caption">Амстердам</h2>
-              <button type="button" class="elements__like-button"></button>
-            </div>
-          </article>
-        </li>
-        <li class="elements__item">
-          <article class="elements__card">
-            <img class="elements__image" src="./images/everest.jpg" alt="Эверест">
-            <div class="elements__caption-wrapper">
-              <h2 class="elements__caption">Эверест</h2>
-              <button type="button" class="elements__like-button"></button>
-            </div>
-          </article>
-        </li>
-        <li class="elements__item">
-          <article class="elements__card">
-            <img class="elements__image" src="./images/golden-bridge.jpg" alt="Золотые ворота">
-            <div class="elements__caption-wrapper">
-              <h2 class="elements__caption">Золотые ворота</h2>
-              <button type="button" class="elements__like-button"></button>
-            </div>
-          </article>
-        </li>
-        <li class="elements__item">
-          <article class="elements__card">
-            <img class="elements__image" src="./images/creete.jpg" alt="о. Крит">
-            <div class="elements__caption-wrapper">
-              <h2 class="elements__caption">о. Крит</h2>
-              <button type="button" class="elements__like-button"></button>
-            </div>
-          </article>
-        </li>
-        <li class="elements__item">
-          <article class="elements__card">
-            <img class="elements__image" src="./images/prague.jpg" alt="Прага">
-            <div class="elements__caption-wrapper">
-              <h2 class="elements__caption">Прага</h2>
-              <button type="button" class="elements__like-button elements__like-button_active"></button>
-            </div>
-          </article>
-        </li>
-      </ul>
+      <ul class="elements__list"></ul>
     </section>
   </main>
   <footer class="footer">
@@ -96,6 +40,20 @@
       </form>
     </div>
   </div>
+
+  <template id="element_template">
+    <li class="elements__item">
+      <article class="elements__card">
+        <button type="button" class="elements__trash-button"></button>
+        <img class="elements__image" src="" alt="">
+        <div class="elements__caption-wrapper">
+          <h2 class="elements__caption"></h2>
+          <button type="button" class="elements__like-button"></button>
+        </div>
+      </article>
+    </li>
+  </template>
+
   <script src="./scripts/script.js"></script>
 </body>
 </html>
