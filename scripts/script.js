@@ -78,6 +78,9 @@ function handleAddCardFormSubmit (evt) {
   singleElement.querySelector('.elements__image').src = popupInputElImage.value;
   singleElement.querySelector('.elements__image').alt = popupInputElCaption.value;
   singleElement.querySelector('.elements__caption').textContent = popupInputElCaption.value;
+  singleElement.querySelector('.elements__like-button').addEventListener('click', function (evt) {
+    const clecked = evt.target.classList.toggle('elements__like-button_active');
+  });
 
   // отображаем на странице
   elementsList.prepend(singleElement);
@@ -102,6 +105,10 @@ initialCards.forEach(((item) => {
   singleElement.querySelector('.elements__image').src = item.link;
   singleElement.querySelector('.elements__image').alt = item.name;
   singleElement.querySelector('.elements__caption').textContent = item.name;
+
+  singleElement.querySelector('.elements__like-button').addEventListener('click', function (evt) {
+    const clecked = evt.target.classList.toggle('elements__like-button_active');
+  });
 
   // отображаем на странице
   elementsList.append(singleElement);
