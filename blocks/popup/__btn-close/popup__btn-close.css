@@ -14,6 +14,10 @@
   padding: 0;
 }
 
+.popup__close:focus {
+  outline-offset: 4px;
+}
+
 .popup__btn-close:hover {
   opacity: .6;
   cursor: pointer;

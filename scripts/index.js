@@ -5,9 +5,6 @@ const popupTypeEditProfile = document.querySelector('.popup_type_edit-profile');
 const popupTypeAddCard = document.querySelector('.popup_type_add-card');
 const popupTypeShowImage = document.querySelector('.popup_type_show-image');
 
-const formEditProfile = document.forms['edit-profile_form'];
-const formAddCard = document.forms['add-card_form'];
-
 const inputPopupName = document.querySelector('.popup__input_el_name');
 const inputPopupAbout = document.querySelector('.popup__input_el_about');
 const inputPopupCaption = document.querySelector('.popup__input_el_caption');
@@ -51,6 +48,20 @@ const initialCards = [
 const cardTemplate = document.querySelector('#element_template').content;
 const cardsList = document.querySelector('.elements__list');
 
+/* forms */
+const formsConfig = {
+  formSelector: '.popup__form',
+  fieldSelector: '.popup__input',
+  submitSelector: '.popup__btn-save',
+  invalidFieldClass: 'popup__input_invalid',
+  errorSelectorPrefix: 'popup__input-error_field_',
+};
+const formProfile = document.forms.profile;
+const formPlace = document.forms.place;
+
+enableValidation(formsConfig);
+
+/* popup functions */
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
@@ -69,11 +80,6 @@ function openPopupTypeEditProfile (evt) {
 function openPopupTypeAddCard (evt) {
   evt.preventDefault();
   openPopup(popupTypeAddCard);
-}
-
-function openPopupTypeShowImage (evt) {
-  evt.preventDefault();
-  openPopup(popupTypeShowImage);
 }
 
 function createCard(item) {
@@ -118,8 +124,8 @@ function handleFormAddCardSubmit (evt) {
 btnProfileEdit.addEventListener('click', openPopupTypeEditProfile);
 btnProfileAddCard.addEventListener('click', openPopupTypeAddCard);
 
-formEditProfile.addEventListener('submit', handleFormEditProfileSubmit);
-formAddCard.addEventListener('submit', handleFormAddCardSubmit);
+formProfile.addEventListener('submit', handleFormEditProfileSubmit);
+formPlace.addEventListener('submit', handleFormAddCardSubmit);
 
 closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
@@ -129,4 +135,3 @@ closeButtons.forEach((button) => {
 initialCards.forEach(((item) => {
   cardsList.append(createCard(item));
 }));
-
