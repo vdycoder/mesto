@@ -19,12 +19,14 @@
 + медиа запросы для различных разрешений экрана (от 320px до 1280px)
 + JS управление отображением `popup`-окна Редактирования профиля, Добавления места, Просмотра места
 + JS управление механизмом лайков к понравивишимся местам, удаления мест из ленты
++ JS управление валидацей форм на странице
 + GitHub Pages для демонстрации проекта
 
 **Figma**
 
 * [Ссылка на макет в Figma ПР4](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
 * [Ссылка на макет в Figma ПР5](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0%3A1)
+* [Ссылка на макет в Figma ПР6](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1)
 **Картинки**
 
 Изображения для проекта взяты из макета Фигмы.

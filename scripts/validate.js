@@ -65,12 +65,19 @@ const enableValidation = (config) => {
 
       elementField.addEventListener('focus', focusHandler);
     });
+    form.addEventListener('click', (evt) => evt.stopPropagation());
   });
 };
 
-
-// не требуется по проекту, но можно сделать, чтобы по красоте
 const resetForm = (config, form) => {
   // сброс формы, текста ошибок и классов ошибок
+  form.reset();
+  const formFields = Array.from(form.querySelectorAll(config.fieldSelector));
+  formFields.forEach((elementField) => {
+    const errorTextSelector = `.${config.errorSelectorPrefix + elementField.name}`;
+    const elementError = form.querySelector(errorTextSelector);
+    elementError.textContent = '';
+    elementField.classList.remove(config.invalidFieldClass);
+  });
 };
 
