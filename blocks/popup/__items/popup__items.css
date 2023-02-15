@@ -1,6 +1,5 @@
 .popup__items {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 30px;
+  padding: 39px 0 9px;
+  border: none;
+  margin: 0;
 }
