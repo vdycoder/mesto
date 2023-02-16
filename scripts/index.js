@@ -16,8 +16,6 @@ const popupCaption = document.querySelector('.popup__caption');
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
 
-//const closeButtons = document.querySelectorAll('.popup__btn-close');
-
 const initialCards = [
   {
     name: 'Архыз',
@@ -64,16 +62,16 @@ enableValidation(formsConfig);
 
 /* popup functions */
 function closePopup (popup) {
-  document.removeEventListener('keydown', escKeydownListner);
+  document.removeEventListener('keydown', handleEscape);
   popup.classList.remove('popup_opened');
 }
 
 function openPopup (popup) {
-  document.addEventListener('keydown', escKeydownListner);
+  document.addEventListener('keydown', handleEscape);
   popup.classList.add('popup_opened');
 }
 
-function escKeydownListner (evt) {
+function handleEscape (evt) {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
@@ -133,7 +131,6 @@ function handleFormAddCardSubmit (evt) {
     link: inputPopupImage.value
   };
   cardsList.prepend(createCard(inputData));
-  //evt.target.reset();
   closePopup(popupTypeAddCard);
 }
 
@@ -142,25 +139,16 @@ btnProfileAddCard.addEventListener('click', openPopupAddPlace);
 
 formProfile.addEventListener('submit', handleFormEditProfileSubmit);
 formPlace.addEventListener('submit', handleFormAddCardSubmit);
-/*
-closeButtons.forEach((button) => {
-  const popup = button.closest('.popup');
-  popup.addEventListener('click', () => closePopup(popup));
-});
-
-const popupContent = document.querySelector('.popup__content');
-popupContent.addEventListener('click', (evt) => evt.stopPropagation());
-*/
 
 const popups = Array.from(document.querySelectorAll('.popup'));
 popups.forEach((popup) => {
-  popup.addEventListener('click', (evt) => {
+  popup.addEventListener('mousedown', (evt) => {
     if (evt.target === popup) {
       closePopup(popup);
     }
   });
   const closeButton = popup.querySelector('.popup__btn-close');
-  closeButton.addEventListener('click', () => closePopup(popup));
+  closeButton.addEventListener('mousedown', () => closePopup(popup));
 });
 
 initialCards.forEach(((item) => {

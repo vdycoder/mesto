@@ -47,8 +47,8 @@ const checkFieldValidity = (elementField, elementError, invalidFieldClass) => {
   return valid;
 };
 
+/* обход всех форм и всех полей каждой формы */
 const enableValidation = (config) => {
-  // обход всех форм и всех полей каждой формы
   const forms = document.querySelectorAll(config.formSelector);
   forms.forEach((form) => {
     const formFields = Array.from(form.querySelectorAll(config.fieldSelector));
@@ -69,8 +69,8 @@ const enableValidation = (config) => {
   });
 };
 
+/* сброс формы, текста ошибок и классов ошибок */
 const resetForm = (config, form) => {
-  // сброс формы, текста ошибок и классов ошибок
   form.reset();
   const formFields = Array.from(form.querySelectorAll(config.fieldSelector));
   formFields.forEach((elementField) => {
