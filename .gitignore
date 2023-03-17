@@ -1,3 +1,4 @@
 *.fig
 .vscode/
-example/
+*example/
+*copy.*
