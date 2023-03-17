@@ -1,23 +1,30 @@
-import { toggleFormSubmit, focusHandler } from "./utils.js";
-
 class FormValidator {
   constructor(config, form) {
-    this._fieldSelector = config.fieldSelector;
-    this._submitSelector = config.submitSelector;
-    this._invalidFieldClass = config.invalidFieldClass;
-    this._errorSelectorPrefix = config.errorSelectorPrefix;
     this._form = form;
+    this._formFields = Array.from(form.querySelectorAll(config.fieldSelector));
+    this._buttonSubmit = form.querySelector(config.submitSelector);
+    this._errorSelectorPrefix = config.errorSelectorPrefix;
+    this._invalidFieldClass = config.invalidFieldClass;
   }
 
-  _checkFormValidity(elementsFields, elementSubmit) {
-    toggleFormSubmit(elementSubmit, { disable: true });
+  _focusHandler(target) {
+    target.select()
+  };
 
-    const formIsValid = elementsFields.every(({ validity }) => validity.valid);
-
-    if (!formIsValid) {
-      toggleFormSubmit(elementSubmit, { disable: false });
+  _toggleFormSubmit({ disable }) {
+    if (disable) {
+      this._buttonSubmit.removeAttribute('disabled');
+    } else {
+      this._buttonSubmit.setAttribute('disabled', 'disabled');
     }
+  };
 
+  _checkFormValidity () {
+    this._toggleFormSubmit({ disable: true });
+    const formIsValid = this._formFields.every(({ validity }) => validity.valid);
+    if (!formIsValid) {
+      this._toggleFormSubmit({ disable: false });
+    }
     return formIsValid;
   };
 
@@ -40,7 +47,7 @@ class FormValidator {
     const params = {
       validationMessage,
       valid,
-      invalidFieldClass,
+      invalidFieldClass
     };
 
     this._setFieldError(elementField, elementError, params);
@@ -48,27 +55,25 @@ class FormValidator {
   };
 
   enableValidation() {
-    const formFields = Array.from(this._form.querySelectorAll(this._fieldSelector));
-    const buttonSubmit = this._form.querySelector(this._submitSelector);
-    formFields.forEach((elementField) => {
+    this._formFields.forEach((elementField) => {
       const errorTextSelector = `.${this._errorSelectorPrefix + elementField.name}`;
       const elementError = this._form.querySelector(errorTextSelector);
 
       elementField.addEventListener('input', (evt) => {
         const field = evt.target;
-        this._checkFormValidity(formFields, buttonSubmit);
+        this._checkFormValidity();
         this._checkFieldValidity(field, elementError, this._invalidFieldClass);
       });
 
-      elementField.addEventListener('focus', focusHandler(elementField));
+      elementField.addEventListener('focus', this._focusHandler(elementField));
     });
     this._form.addEventListener('click', (evt) => evt.stopPropagation());
   };
 
-  resetForm() {
+  resetForm({ disable }) {
     this._form.reset();
-    const formFields = Array.from(this._form.querySelectorAll(this._fieldSelector));
-    formFields.forEach((elementField) => {
+    this._toggleFormSubmit({ disable });
+    this._formFields.forEach((elementField) => {
       const errorTextSelector = `.${this._errorSelectorPrefix + elementField.name}`;
       const elementError = this._form.querySelector(errorTextSelector);
       elementError.textContent = '';

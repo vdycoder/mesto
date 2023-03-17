@@ -1,6 +1,5 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-import { toggleFormSubmit } from "./utils.js";
 
 const btnProfileEdit = document.querySelector('.profile__btn-edit');
 const btnProfileAddCard = document.querySelector('.profile__btn-add');
@@ -20,10 +19,12 @@ const popupCaption = document.querySelector('.popup__caption');
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
 
+const cardTemplate = document.querySelector("#element_template").content;
 const cardsList = document.querySelector('.elements__list');
 
 /* forms */
 const formsConfig = {
+  formSelector: '.popup__form',
   fieldSelector: '.popup__input',
   submitSelector: '.popup__btn-save',
   invalidFieldClass: 'popup__input_invalid',
@@ -32,12 +33,19 @@ const formsConfig = {
 
 const formProfile = document.forms.profile;
 const formPlace = document.forms.place;
+const formValidators = {};
 
-const formProfileValidator = new FormValidator(formsConfig, formProfile);
-formProfileValidator.enableValidation();
+const enableValidation = (formsConfig) => {
+  const formList = Array.from(document.querySelectorAll(formsConfig.formSelector))
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(formsConfig, formElement)
+    const formName = formElement.getAttribute('name')
+    formValidators[formName] = validator;
+   validator.enableValidation();
+  });
+};
 
-const formPlaceValidator = new FormValidator(formsConfig, formPlace);
-formPlaceValidator.enableValidation();
+enableValidation(formsConfig);
 
 /* popup functions */
 function closePopup (popup) {
@@ -59,18 +67,16 @@ function handleEscape (evt) {
 
 function openPopupProfile (evt) {
   evt.preventDefault();
-  formProfileValidator.resetForm();
+  formValidators['profile'].resetForm({ disable: true });
   inputPopupName.value = profileName.textContent;
   inputPopupAbout.value = profileAbout.textContent;
-  toggleFormSubmit(formProfile.submit, { disable: true });
   formProfile.name.focus();
   openPopup(popupTypeEditProfile);
 }
 
 function openPopupAddPlace (evt) {
   evt.preventDefault();
-  formPlaceValidator.resetForm();
-  toggleFormSubmit(formPlace.submit, { disable: false });
+  formValidators['place'].resetForm({ disable: false });
   formPlace.caption.focus();
   openPopup(popupTypeAddCard);
 }
@@ -83,7 +89,7 @@ popups.forEach((popup) => {
     }
   });
   const closeButton = popup.querySelector('.popup__btn-close');
-  closeButton.addEventListener('mousedown', () => closePopup(popup));
+  closeButton.addEventListener('click', () => closePopup(popup));
 });
 
 /* handlers */
@@ -127,7 +133,11 @@ const selectors = {
 };
 
 function renderCard(item) {
-  const cardElement = new Card({ item, handleOpenCardPopup }, selectors);
+  const cardElement = new Card({
+    item,
+    cardTemplate,
+    handleOpenCardPopup
+  }, selectors);
   return cardElement.createCard();
 }
 
