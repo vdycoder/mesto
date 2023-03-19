@@ -3,16 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Проект: Место Россия</title>
 </head>
 <body class="page">
   <header class="header">
-    <img class="header__logo" src="./images/header-logo-dark.svg" alt="Логотип">
+    <img class="header__logo" src="<%=require('./images/header-logo-dark.svg')%>" alt="Логотип">
   </header>
   <main class="content">
     <section class="profile" aria-label="profile">
-      <img class="profile__avatar" src="./images/Avatar.jpg" alt="Аватар пользователя">
+      <img class="profile__avatar" src="<%=require('./images/Avatar.jpg')%>" alt="Аватар пользователя">
       <div class="profile__container">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <button type="button" class="profile__btn-edit"></button>
@@ -165,6 +164,5 @@
     </li>
   </template>
 
-  <script src="./scripts/index.js" type="module" defer></script>
 </body>
 </html>

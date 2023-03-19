@@ -2,8 +2,8 @@
   grid-area: name;
   display: inline-flex;
   position: relative;
-  align-items: end;
-  align-self: end;
+  align-items: flex-end;
+  align-self: flex-end;
   gap: 0 18px;
 }
 

@@ -2,3 +2,5 @@
 .vscode/
 *example/
 *copy.*
+node_modules/
+dist/
