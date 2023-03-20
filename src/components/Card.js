@@ -1,8 +1,8 @@
 class Card {
-  constructor({ item, cardTemplate, handleOpenCardPopup }, selectors) {
+  constructor({ item, cardTemplate, handleCardClick }, selectors) {
     this.caption = item.name;
     this.image = item.link;
-    this._handleOpenCardPopup = handleOpenCardPopup;
+    this._handleCardClick = handleCardClick;
     this._cardElement = cardTemplate.querySelector(selectors.item).cloneNode(true);
     this._cardCaption = this._cardElement.querySelector(selectors.caption);
     this._cardImage = this._cardElement.querySelector(selectors.image);
@@ -30,7 +30,7 @@ class Card {
       evt.target.classList.toggle(this._buttonLike_active);
     });
     this._cardImage.addEventListener('click', (evt) => {
-      this._handleOpenCardPopup(
+      this._handleCardClick(
         this._cardCaption.textContent,
         this._cardImage.src
         );

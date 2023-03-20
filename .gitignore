@@ -1,4 +1,5 @@
-*.fig
+figma/
+old/
 .vscode/
 *example/
 *copy.*
