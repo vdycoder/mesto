@@ -9,7 +9,6 @@ class Card {
     this._cardButtonTrash = this._cardElement.querySelector(selectors.buttonTrash);
     this._cardButtonLike = this._cardElement.querySelector(selectors.buttonLike);
     this._buttonLike_active = selectors.buttonLike_active;
-    this._handleButtonTrash = this._handleButtonTrash.bind(this);
   }
 
   createCard(){
@@ -20,21 +19,22 @@ class Card {
     return this._cardElement;
   }
 
-  _handleButtonTrash() {
+  _deleteCard = () => {
     this._cardElement.remove();
   }
 
+  _toggleLike = (evt) => {
+    evt.target.classList.toggle(this._buttonLike_active);
+  }
+
+  _handleImageClick = () => {
+    this._handleCardClick(this._cardCaption.textContent, this._cardImage.src)
+  }
+
   _setEventListners() {
-    this._cardButtonTrash.addEventListener('click', this._handleButtonTrash);
-    this._cardButtonLike.addEventListener('click', (evt) => {
-      evt.target.classList.toggle(this._buttonLike_active);
-    });
-    this._cardImage.addEventListener('click', (evt) => {
-      this._handleCardClick(
-        this._cardCaption.textContent,
-        this._cardImage.src
-        );
-    });
+    this._cardButtonTrash.addEventListener('click', this._deleteCard);
+    this._cardButtonLike.addEventListener('click', this._toggleLike);
+    this._cardImage.addEventListener('click', this._handleImageClick);
   }
 
 }

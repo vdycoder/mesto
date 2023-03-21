@@ -54,7 +54,9 @@ const profileSelectors = {
 const popupSelectors = {
   editProfile: '.popup_type_edit-profile',
   addCard: '.popup_type_add-card',
-  showImage: '.popup_type_show-image'
+  showImage: '.popup_type_show-image',
+  image: '.popup__image',
+  caption: '.popup__caption'
 };
 
 const formProfile = document.forms.profile;

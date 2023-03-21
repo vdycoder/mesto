@@ -61,16 +61,15 @@ cardsList.renderItems();
 /* handlers */
 function handleEditProfileClick (evt) {
   evt.preventDefault();
-  formValidators['profile'].resetForm({ disable: true });
-  formProfile.name.value = userProfile.getUserInfo().name;
-  formProfile.about.value = userProfile.getUserInfo().about;
+  formValidators['profile'].resetFormErrors({ disable: true });
+  profilePopup.setInputValues(userProfile.getUserInfo());
   formProfile.name.focus();
   profilePopup.open();
 }
 
 function handleAddCardClick (evt) {
   evt.preventDefault();
-  formValidators['place'].resetForm({ disable: false });
+  formValidators['place'].resetFormErrors({ disable: false });
   formPlace.caption.focus();
   addCardPopup.open();
 }
@@ -88,13 +87,13 @@ function handleEditProfileFormSubmit (evt, inputValues) {
   profilePopup.close();
 }
 
-function handleAddCardFormSubmit (evt) {
+function handleAddCardFormSubmit (evt, inputValues) {
   evt.preventDefault();
-  const inputData = {
-    name: formPlace.caption.value,
-    link: formPlace.image.value
+  const item = {
+    name: inputValues.caption,
+    link: inputValues.image
   };
-  cardsList.addItem(renderCard(inputData));
+  cardsList.addItem(renderCard(item));
   addCardPopup.close();
 }
 

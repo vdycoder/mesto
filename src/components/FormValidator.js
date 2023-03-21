@@ -54,24 +54,25 @@ class FormValidator {
     return valid;
   };
 
-  enableValidation() {
+  _setEventListners() {
     this._formFields.forEach((elementField) => {
       const errorTextSelector = `.${this._errorSelectorPrefix + elementField.name}`;
       const elementError = this._form.querySelector(errorTextSelector);
-
       elementField.addEventListener('input', (evt) => {
         const field = evt.target;
         this._checkFormValidity();
         this._checkFieldValidity(field, elementError, this._invalidFieldClass);
       });
-
       elementField.addEventListener('focus', this._focusHandler(elementField));
     });
     this._form.addEventListener('click', (evt) => evt.stopPropagation());
+  }
+
+  enableValidation() {
+    this._setEventListners();
   };
 
-  resetForm({ disable }) {
-    this._form.reset();
+  resetFormErrors({ disable }) {
     this._toggleFormSubmit({ disable });
     this._formFields.forEach((elementField) => {
       const errorTextSelector = `.${this._errorSelectorPrefix + elementField.name}`;
