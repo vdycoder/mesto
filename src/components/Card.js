@@ -1,7 +1,7 @@
 class Card {
   constructor({ item, cardTemplate, handleCardClick }, selectors) {
-    this.caption = item.name;
-    this.image = item.link;
+    this._caption = item.name;
+    this._image = item.link;
     this._handleCardClick = handleCardClick;
     this._cardElement = cardTemplate.querySelector(selectors.item).cloneNode(true);
     this._cardCaption = this._cardElement.querySelector(selectors.caption);
@@ -13,9 +13,9 @@ class Card {
 
   createCard(){
     this._setEventListners();
-    this._cardCaption.textContent = this.caption;
-    this._cardImage.src = this.image;
-    this._cardImage.alt = this.caption;
+    this._cardCaption.textContent = this._caption;
+    this._cardImage.src = this._image;
+    this._cardImage.alt = this._caption;
     return this._cardElement;
   }
 
