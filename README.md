@@ -22,6 +22,7 @@
 + ПР 6 - JS управление валидацей форм на странице
 + ПР 7 - перенос логики создания карточки и валидации форм в отдельные классы Card и FormValidator
 + ПР 8 - добавлена сборка проекта Вебпаком, разделение логики на дополнительные компоненты форм, секции, профиля
++ ПР 9 - 
 + GitHub Pages для демонстрации проекта
 
 **Figma**
@@ -29,6 +30,8 @@
 * [Ссылка на макет в Figma ПР4](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
 * [Ссылка на макет в Figma ПР5](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0%3A1)
 * [Ссылка на макет в Figma ПР6](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1)
+* [Ссылка на макет в Figma ПР9](https://www.figma.com/file/PSdQFRHoxXJFs2FH8IXViF/JavaScript-9-sprint?node-id=0%3A1)
+
 **Картинки**
 
 Изображения для проекта взяты из макета Фигмы.
