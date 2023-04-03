@@ -1,30 +1,3 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 const cardSelectors = {
   template: '#element_template',
   list: '.elements__list',
@@ -33,7 +6,8 @@ const cardSelectors = {
   image: '.elements__image',
   buttonTrash: '.elements__trash-button',
   buttonLike: '.elements__like-button',
-  buttonLike_active: 'elements__like-button_active'
+  buttonLike_active: 'elements__like-button_active',
+  likesCount: '.elements__likes-count'
 };
 
 const formsConfig = {
@@ -48,15 +22,18 @@ const profileSelectors = {
   editButton: '.profile__btn-edit',
   addButton: '.profile__btn-add',
   name: '.profile__name',
-  about: '.profile__about'
+  about: '.profile__about',
+  avatar: '.profile__avatar'
 };
 
 const popupSelectors = {
   editProfile: '.popup_type_edit-profile',
   addCard: '.popup_type_add-card',
   showImage: '.popup_type_show-image',
+  deleteCard: '.popup_type_delete-card',
   image: '.popup__image',
-  caption: '.popup__caption'
+  caption: '.popup__caption',
+  cardId: '.popup__input_el_cardId'
 };
 
 const formProfile = document.forms.profile;
@@ -66,7 +43,6 @@ const profileAddCardButton = document.querySelector(profileSelectors.addButton);
 const cardTemplate = document.querySelector(cardSelectors.template).content;
 
 export {
-  initialCards,
   cardSelectors,
   formsConfig,
   profileSelectors,

@@ -1,13 +1,14 @@
 import './index.css';
 
+import Api from '../components/Api.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import UserInfo from '../components/UserInfo.js';
 import {
-  initialCards,
   cardSelectors,
   formsConfig,
   profileSelectors,
@@ -33,30 +34,82 @@ const enableFormsValidation = (formsConfig) => {
 
 enableFormsValidation(formsConfig);
 
-/* init popups */
-const userProfile = new UserInfo(profileSelectors.name, profileSelectors.about);
+/* init api */
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-63',
+  headers: {
+    authorization: 'd5678923-2b42-42e3-bf9c-7ef2ba66b460',
+    'Content-Type': 'application/json'
+  }
+});
 
-const profilePopup = new PopupWithForm(popupSelectors.editProfile, handleEditProfileFormSubmit);
+/* init popups */
+const userProfile = new UserInfo(
+  profileSelectors.name,
+  profileSelectors.about,
+  profileSelectors.avatar
+  );
+
+api.getUserInfo()
+  .then((result) => {
+    userProfile.setUserInfo({
+      userName: result.name,
+      userAbout: result.about,
+      userAvatar: result.avatar,
+      userId: result._id,
+      });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+const profilePopup = new PopupWithForm(
+  popupSelectors.editProfile,
+  handleEditProfileFormSubmit
+  );
 profilePopup.setEventListeners();
 
-const addCardPopup = new PopupWithForm(popupSelectors.addCard, handleAddCardFormSubmit);
+const addCardPopup = new PopupWithForm(
+  popupSelectors.addCard,
+  handleAddCardFormSubmit
+  );
 addCardPopup.setEventListeners();
 
-const showCardPopup = new PopupWithImage(popupSelectors.showImage);
+const showCardPopup = new PopupWithImage(
+  popupSelectors.showImage
+  );
 showCardPopup.setEventListeners();
+
+const deleteCardPopup = new PopupWithConfirmation(
+  popupSelectors.deleteCard,
+  handleDeleteCardFormSubmit
+);
+deleteCardPopup.setEventListeners();
+
 
 /* init cards section */
 function renderCard(item) {
   const cardElement = new Card({
     item,
     cardTemplate,
-    handleCardClick
+    handleCardClick,
+    handleTrashButtonClick
   }, cardSelectors);
-  return cardElement.createCard();
+  return cardElement.createCard(userProfile.getUserInfo()['_id']);
 }
 
-const cardsList = new Section(initialCards, renderCard, cardSelectors.list);
-cardsList.renderItems();
+const cardsList = new Section(
+  renderCard,
+  cardSelectors.list
+  );
+
+api.getInitialCards()
+  .then((result) => {
+    cardsList.renderItems(result);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 /* handlers */
 function handleEditProfileClick (evt) {
@@ -78,23 +131,75 @@ function handleCardClick(name, link) {
   showCardPopup.open(name, link);
 }
 
+function handleTrashButtonClick (evt, item) {
+  evt.preventDefault();
+  deleteCardPopup.open(item);
+}
+
+function handleDeleteCardFormSubmit(evt, item) {
+  evt.preventDefault();
+
+  api.deleteCard(item)
+    .then((result) => {
+      console.log(result.message);
+      deleteCardPopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      document.getElementById(item).remove();
+    });
+}
+
+function handleLikeButtonClick(evt, item) {
+
+}
+
 function handleEditProfileFormSubmit (evt, inputValues) {
   evt.preventDefault();
-  userProfile.setUserInfo({
+  profilePopup.renderLoading(true);
+  api.updateUserInfo({
     userName: inputValues.name,
     userAbout: inputValues.about
+    })
+    .then((result) => {
+      userProfile.setUserInfo({
+        userName: result.name,
+        userAbout: result.about,
+        userAvatar: result.avatar,
+        userId: result._id,
+      });
+      profilePopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      profilePopup.renderLoading(false);
     });
-  profilePopup.close();
 }
 
 function handleAddCardFormSubmit (evt, inputValues) {
   evt.preventDefault();
+  addCardPopup.renderLoading(true);
   const item = {
     name: inputValues.caption,
     link: inputValues.image
   };
-  cardsList.addItem(renderCard(item));
-  addCardPopup.close();
+  api.postCard(item)
+    .then((result) => {
+      cardsList.addItem(renderCard(result));
+      addCardPopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      addCardPopup.renderLoading(false);
+    });
+
+
 }
 
 /* listners */

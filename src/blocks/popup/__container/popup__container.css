@@ -1,6 +1,6 @@
 .popup__container {
   display: grid;
-  width: 430px;
+  width: 470px;
   padding: 0 19px;
   gap: 8px;
   grid-template-areas:
@@ -11,7 +11,8 @@
 
 @media screen and (max-width: 634px) {
   .popup__container {
-    gap: 18px;
+    max-width: 430px;
+    gap: 18px 0;
     grid-template-areas:
       'close'
       'content';
