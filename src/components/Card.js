@@ -48,10 +48,6 @@ class Card {
     }
   }
 
-  _toggleLike = (evt) => {
-    evt.target.classList.toggle(this._buttonLike_active);
-  }
-
   _handleImageClick = () => {
     this._handleCardClick(this._cardCaption.textContent, this._cardImage.src)
   }

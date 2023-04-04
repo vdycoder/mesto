@@ -162,41 +162,26 @@ function handleDeleteCardFormSubmit(evt, item) {
 }
 
 function handleLikeButtonClick(evt, card, cardId, isLiked) {
-  //console.log(item);
-  //console.log(evt.currentTarget);
   evt.preventDefault();
   if (isLiked) {
     api
     .deleteLike(cardId)
     .then((result) => {
       card.setLikes(result.likes);
-      //console.log(result.message);
-      //deleteCardPopup.close();
     })
     .catch((err) => {
       console.log(err);
     })
-    .finally(() => {
-      //document.getElementById(item).remove();
-    });
-
   } else {
     api
     .addLike(cardId)
     .then((result) => {
       card.setLikes(result.likes);
-      //console.log(result.message);
-      //deleteCardPopup.close();
     })
     .catch((err) => {
       console.log(err);
     })
-    .finally(() => {
-      //document.getElementById(item).remove();
-    });
-
   }
-
 }
 
 function handleEditProfileFormSubmit (evt, inputValues) {
