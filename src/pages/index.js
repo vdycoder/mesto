@@ -75,8 +75,7 @@ const avatarPopup = new PopupWithForm(
   popupSelectors.editAvatar,
   handleEditAvatarFormSubmit
   );
-  avatarPopup.setEventListeners();
-
+avatarPopup.setEventListeners();
 
 const addCardPopup = new PopupWithForm(
   popupSelectors.addCard,
@@ -152,13 +151,11 @@ function handleDeleteCardFormSubmit(evt, item) {
     .then((result) => {
       console.log(result.message);
       deleteCardPopup.close();
+      document.getElementById(item).remove();
     })
     .catch((err) => {
       console.log(err);
     })
-    .finally(() => {
-      document.getElementById(item).remove();
-    });
 }
 
 function handleLikeButtonClick(evt, card, cardId, isLiked) {
@@ -239,7 +236,7 @@ function handleEditAvatarFormSubmit (evt, inputValues) {
   evt.preventDefault();
   avatarPopup.renderLoading(true);
   api.updateAvatar({
-    userAvatar: inputValues.image,
+    userAvatar: inputValues.avatar_image,
     })
     .then((result) => {
       userProfile.setUserInfo({
