@@ -21,6 +21,7 @@ const formsConfig = {
 const profileSelectors = {
   editButton: '.profile__btn-edit',
   addButton: '.profile__btn-add',
+  avatarButton: '.profile__btn-avatar',
   name: '.profile__name',
   about: '.profile__about',
   avatar: '.profile__avatar'
@@ -31,6 +32,7 @@ const popupSelectors = {
   addCard: '.popup_type_add-card',
   showImage: '.popup_type_show-image',
   deleteCard: '.popup_type_delete-card',
+  editAvatar: '.popup_type_edit-avatar',
   image: '.popup__image',
   caption: '.popup__caption',
   cardId: '.popup__input_el_cardId'
@@ -38,8 +40,10 @@ const popupSelectors = {
 
 const formProfile = document.forms.profile;
 const formPlace = document.forms.place;
+const formAvatar = document.forms.avatar;
 const profileEditButton = document.querySelector(profileSelectors.editButton);
 const profileAddCardButton = document.querySelector(profileSelectors.addButton);
+const profileEditAvatarButton = document.querySelector(profileSelectors.avatarButton);
 const cardTemplate = document.querySelector(cardSelectors.template).content;
 
 export {
@@ -48,8 +52,10 @@ export {
   profileSelectors,
   profileEditButton,
   profileAddCardButton,
+  profileEditAvatarButton,
   popupSelectors,
   cardTemplate,
   formProfile,
-  formPlace
+  formPlace,
+  formAvatar
 }

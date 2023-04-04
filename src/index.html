@@ -12,7 +12,9 @@
   </header>
   <main class="content">
     <section class="profile" aria-label="profile">
-      <img class="profile__avatar" src="" alt="Аватар пользователя">
+      <button type="button" class="profile__btn-avatar">
+        <img class="profile__avatar" src="" alt="Аватар пользователя">
+      </button>
       <div class="profile__container">
         <h1 class="profile__name"></h1>
         <button type="button" class="profile__btn-edit"></button>
@@ -169,8 +171,48 @@
       </form>
     </div>
   </div>
-
-
+  <div class="popup popup_type_edit-avatar">
+    <div class="popup__container">
+      <button
+        type="button"
+        class="popup__btn-close"
+        tabindex="4"
+        aria-label="Закрыть"
+      ></button>
+      <form
+        action="#"
+        class="popup__form"
+        name="avatar"
+        tabindex="0"
+        novalidate
+      >
+        <h2 class="popup__title">Обновить аватар</h2>
+        <fieldset class="popup__items">
+          <div class="popup__item">
+            <input
+              type="url"
+              id="image"
+              name="image"
+              class="popup__input popup__input_el_image"
+              placeholder="Ссылка на картинку"
+              tabindex="1"
+              required
+            >
+            <span class="popup__input-error popup__input-error_field_image"></span>
+          </div>
+        </fieldset>
+        <button
+          type="submit"
+          name="submit"
+          class="popup__btn-save"
+          tabindex="2"
+          disabled
+        >
+          Сохранить
+        </button>
+      </form>
+    </div>
+  </div>
   <div class="popup popup_type_show-image">
     <div class="popup__container popup__container_type_show-image">
       <button type="button" class="popup__btn-close"></button>

@@ -100,4 +100,20 @@ export default class Api {
       });
   }
 
+  updateAvatar({ userAvatar }) {
+    return fetch(this._options.baseUrl + '/users/me/avatar', {
+      method: 'PATCH',
+      headers: this._options.headers,
+      body: JSON.stringify({
+        avatar: userAvatar
+      })
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
+  }
+
 }
