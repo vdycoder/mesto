@@ -45,25 +45,28 @@ const api = new Api({
   }
 });
 
-/* init popups */
+/* init card & popups */
 const userProfile = new UserInfo(
   profileSelectors.name,
   profileSelectors.about,
   profileSelectors.avatar
   );
 
-api.getUserInfo()
-  .then((result) => {
-    userProfile.setUserInfo({
-      userName: result.name,
-      userAbout: result.about,
-      userAvatar: result.avatar,
-      userId: result._id,
-      });
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+function renderCard(item) {
+  const cardElement = new Card({
+    item,
+    cardTemplate,
+    handleCardClick,
+    handleTrashButtonClick,
+    handleLikeButtonClick
+  }, cardSelectors);
+  return cardElement.createCard(userProfile.getUserInfo()['_id']);
+}
+
+const cardsList = new Section(
+  renderCard,
+  cardSelectors.list
+  );
 
 const profilePopup = new PopupWithForm(
   popupSelectors.editProfile,
@@ -94,29 +97,18 @@ const deleteCardPopup = new PopupWithConfirmation(
 );
 deleteCardPopup.setEventListeners();
 
-
-/* init cards section */
-function renderCard(item) {
-  const cardElement = new Card({
-    item,
-    cardTemplate,
-    handleCardClick,
-    handleTrashButtonClick,
-    handleLikeButtonClick
-  }, cardSelectors);
-  return cardElement.createCard(userProfile.getUserInfo()['_id']);
-}
-
-const cardsList = new Section(
-  renderCard,
-  cardSelectors.list
-  );
-
-api.getInitialCards()
-  .then((result) => {
-    cardsList.renderItems(result);
-  })
-  .catch((err) => {
+/* populate user data & cards */
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, cards]) => {
+    userProfile.setUserInfo({
+      name: userData.name,
+      about: userData.about,
+      avatar: userData.avatar,
+      _id: userData._id,
+      });
+      cardsList.renderItems(cards);
+    })
+  .catch(err => {
     console.log(err);
   });
 

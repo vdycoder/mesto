@@ -13,11 +13,10 @@ export default class UserInfo {
     userInfo['_id'] = this._userId;
     return userInfo;
   }
-
-  setUserInfo({userName, userAbout, userAvatar, userId}) {
-    this._userName.textContent = userName;
-    this._userAbout.textContent = userAbout;
-    this._userAvatar.src = userAvatar;
-    this._userId = userId;
+  setUserInfo( { name, about, avatar, _id } ) {
+    this._userName.textContent = name;
+    this._userAbout.textContent = about;
+    this._userAvatar.src = avatar;
+    this._userId = _id;
   }
 }

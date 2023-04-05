@@ -2,12 +2,13 @@ import Popup from "./Popup.js";
 import { formsConfig } from "../utils/constants.js";
 
 export default class PopupWithForm extends Popup {
-  constructor(popupSelector, handleFormSubmit) {
+  constructor( popupSelector, handleFormSubmit ) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
     this._form = this._popup.querySelector(formsConfig.formSelector);
     this._inputs = Array.from(this._form.querySelectorAll(formsConfig.fieldSelector));
     this._submitButton = this._popup.querySelector(formsConfig.submitSelector);
+    this._submitBtnText = this._submitButton.textContent
   }
 
   _getInputValues() {
@@ -36,11 +37,11 @@ export default class PopupWithForm extends Popup {
     this._form.reset();
   }
 
-  renderLoading(isLoading) {
+  renderLoading(isLoading, loadingText='Сохранение...') {
     if (isLoading) {
-      this._submitButton.textContent = 'Сохранение...'
+      this._submitButton.textContent = loadingText;
     } else {
-      this._submitButton.textContent = 'Сохранить'
+      this._submitButton.textContent = this._submitBtnText;
     }
   }
 }
