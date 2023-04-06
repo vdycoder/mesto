@@ -68,22 +68,22 @@ const cardsList = new Section(
   cardSelectors.list
   );
 
-const profilePopup = new PopupWithForm(
-  popupSelectors.editProfile,
-  handleEditProfileFormSubmit
-  );
+const profilePopup = new PopupWithForm({
+  popupSelector: popupSelectors.editProfile,
+  handleFormSubmit: handleEditProfileFormSubmit
+  });
 profilePopup.setEventListeners();
 
-const avatarPopup = new PopupWithForm(
-  popupSelectors.editAvatar,
-  handleEditAvatarFormSubmit
-  );
+const avatarPopup = new PopupWithForm({
+  popupSelector: popupSelectors.editAvatar,
+  handleFormSubmit: handleEditAvatarFormSubmit
+  });
 avatarPopup.setEventListeners();
 
-const addCardPopup = new PopupWithForm(
-  popupSelectors.addCard,
-  handleAddCardFormSubmit
-  );
+const addCardPopup = new PopupWithForm({
+  popupSelector: popupSelectors.addCard,
+  handleFormSubmit: handleAddCardFormSubmit
+  });
 addCardPopup.setEventListeners();
 
 const showCardPopup = new PopupWithImage(
@@ -91,22 +91,17 @@ const showCardPopup = new PopupWithImage(
   );
 showCardPopup.setEventListeners();
 
-const deleteCardPopup = new PopupWithConfirmation(
-  popupSelectors.deleteCard,
-  handleDeleteCardFormSubmit
-);
+const deleteCardPopup = new PopupWithConfirmation({
+  popupSelector: popupSelectors.deleteCard,
+  handleFormSubmit: handleDeleteCardFormSubmit
+  });
 deleteCardPopup.setEventListeners();
 
 /* populate user data & cards */
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, cards]) => {
-    userProfile.setUserInfo({
-      name: userData.name,
-      about: userData.about,
-      avatar: userData.avatar,
-      _id: userData._id,
-      });
-      cardsList.renderItems(cards);
+    userProfile.setUserInfo(userData);
+    cardsList.renderItems(cards);
     })
   .catch(err => {
     console.log(err);
@@ -181,12 +176,7 @@ function handleEditProfileFormSubmit (evt, inputValues) {
     userAbout: inputValues.about
     })
     .then((result) => {
-      userProfile.setUserInfo({
-        userName: result.name,
-        userAbout: result.about,
-        userAvatar: result.avatar,
-        userId: result._id,
-      });
+      userProfile.setUserInfo(result);
       profilePopup.close();
     })
     .catch((err) => {
@@ -231,12 +221,7 @@ function handleEditAvatarFormSubmit (evt, inputValues) {
     userAvatar: inputValues.avatar_image,
     })
     .then((result) => {
-      userProfile.setUserInfo({
-        userName: result.name,
-        userAbout: result.about,
-        userAvatar: result.avatar,
-        userId: result._id,
-      });
+      userProfile.setUserInfo(result);
       avatarPopup.close();
     })
     .catch((err) => {
